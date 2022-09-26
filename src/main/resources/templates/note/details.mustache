@@ -1,0 +1,158 @@
+{{>layouts/header}}
+{{#note}}
+<div class="p-5 mb-4 bg-light rounded-3">
+  <div class="container-fluid py-5">
+    <h1 class="display-4 fw-bold">{{title}}</h1>
+    <h7 class="display-7 text-muted">학습횟수: {{view}}</h7>
+    <p class="col-md-8 fs-4">{{explanation}}</p>
+    <button class="btn btn-success btn-lg justify-content-md-end" type="button" onclick="location.href='/quizlet/note/{{id}}/study';">학습시작</button>
+  </div>
+</div>
+
+<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#word-edit-modal">
+  <i class="bi bi-plus-square"></i> 단어등록
+</button>
+{{/note}}
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">단어</th>
+    <th scope="col">의미</th>
+    <th scope="col">성공횟수</th>
+    <th scope="col">틀린횟수</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  {{#wordList}}
+    <tr id="word-{{id}}">
+      <th>{{name}}</th>
+      <td>{{mean}}</td>
+      <td>{{success_count}}</td>
+      <td>{{fail_count}}</td>
+      <td>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button type="button" class="btn btn-success btn-sm"><i class="bi bi-pencil-square"></i> 수정</button>
+          <button type="button" class="btn btn-danger btn-sm word-delete-btn" data-word-id="{{id}}"><i class="bi bi-trash"></i> 삭제</button>
+        </div>
+      </td>
+    </tr>
+  {{/wordList}}
+  </tbody>
+</table>
+
+<div class="modal fade" id="word-edit-modal" tabindex="-1" aria-labelledby="word-edit-modal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">단어 등록</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">이름</label>
+            <input type="text" class="form-control" id="new-word-name">
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">의미</label>
+            <input type="text" class="form-control" id="new-word-mean">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        {{#note}}
+          <input type="hidden" id="new-word-note-id" value="{{id}}">
+        {{/note}}
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+        <button type="button" class="btn btn-primary" id="word-create-btn">생성</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{{>layouts/footer}}
+
+  <!-- 모달 이벤트 처리 -->
+  <script>
+{
+  // 모달 요소 선택
+  const wordEditModal = document.querySelector("#word-edit-modal");
+
+  // 모달 이벤트 감지
+  wordEditModal.addEventListener("show.bs.modal", function(event) {
+    // 트리거 버튼 선택
+    const triggerBtn = event.relatedTarget;
+  });
+}
+
+{
+  // 생성 완료 버튼
+  const wordCreateBtn = document.querySelector("#word-create-btn");
+
+  // 클릭 이벤트 감지 및 처리
+  wordCreateBtn.addEventListener("click", function() {
+    // 생성 객체 생성
+    const word = {
+      name: document.querySelector("#new-word-name").value,
+      mean: document.querySelector("#new-word-mean").value,
+      note_id: document.querySelector("#new-word-note-id").value
+    };
+
+
+    // 생성 REST API 호출 - fetch()
+    const url = "/api/quizlet/" + word.note_id + "/word";
+    fetch(url, {
+      method: "post",                  // PATCH 요청
+      body: JSON.stringify(word),    // 객체를 json으로 변경하여 전달
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(response => {
+      // http 응답 코드에 따른 메시지 출력
+      const msg = (response.ok) ? "단어 생성 완료" : "단어 생성 실패..!";
+      alert(msg);
+      // 현재 페이지를 새로고침
+      window.location.reload();
+    });
+  });
+}
+</script>
+
+  <!-- 댓글 삭제 -->
+  <script>
+{
+  // 삭제 버튼 선택
+  const wordDeleteBtns = document.querySelectorAll(".word-delete-btn");
+
+  // 삭제 버튼 이벤트를 처리
+  wordDeleteBtns.forEach(btn => {
+    // 각 버튼의 이벤트 처리를 등록
+    btn.addEventListener("click", (event) => {
+      // 이벤트 발생 요소를 선택
+      const wordDeleteBtn = event.srcElement;
+
+      // 삭제 단어 id 가져오기
+      const wordId = wordDeleteBtn.getAttribute("data-word-id");
+      console.log(`삭제 버튼 클릭: ${wordId}번 단어장`); // "삭제 버튼 클릭: " + noteId + "번 단어";
+
+      // 삭제 API 호출 및 처리
+      const url = `/api/quizlet/word/${wordId}`; // 백틱 숫자 1번 왼쪽키 사용하면 주석 코드 안에서 다른 값 사용가능
+      fetch(url, {
+        method: "DELETE"
+      }).then(response => {
+        // 단어 삭제 실패 처리
+        if (!response.ok) {
+          alert("단어 삭제 실패..!");
+          return;
+        }
+
+        // 삭제 성공 시, 단어을 화면에서 지움!
+        const target = document.querySelector(`#word-${wordId}`);
+        target.remove();
+      });
+    });
+  });
+}
+</script>

@@ -1,0 +1,143 @@
+{{>layouts/header}}
+<div class="p-5 mb-4 bg-light rounded-3">
+  <div class="container-fluid py-5">
+    <h1 class="display-5 fw-bold">내가 만드는 단어 학습</h1>
+    <p class="col-md-8 fs-4">Quizlet 단어 학습은 내가 직접 등록한 문제를 풀어보며 학습할 수 있습니다. 한 라운드에 10문제씩 랜덤으로 출제되는 문제를 풀어보며 틀린 문제는 반복적으로 다시 풀면서 암기하세요.</p>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <button class="btn btn-primary btn-lg" type="button" data-bs-toggle="modal" data-bs-target="#note-edit-modal">단어장 만들기</button>
+    </div>
+  </div>
+</div>
+
+<div class="row align-items-md-stretch" style="--bs-gutter-y: 1rem;">
+{{#noteList}}
+  <div class="col-md-6" id="note-{{id}}">
+    <div class="h-100 p-5 bg-light border rounded-3">
+      <h2>{{title}}</h2>
+      <h6 class="card-subtitle mb-2 text-muted">학습횟수: {{view}}</h6>
+      <p>{{explanation}}</p>
+      <button class="btn btn-outline-primary" onclick="location.href='/quizlet/note/{{id}}';"
+              type="button">학습하기</button>
+      <button class="btn btn-outline-danger note-delete-btn" type="button" data-note-id="{{id}}">삭제</button>
+    </div>
+  </div>
+{{/noteList}}
+</div>
+
+
+
+<div class="modal fade" id="note-edit-modal" tabindex="-1" aria-labelledby="note-edit-modal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">단어장 만들기</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">단어장 제목</label>
+            <input type="text" class="form-control" id="new-note-title">
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">단어장 부연설명</label>
+            <textarea class="form-control" id="new-note-explanation"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        {{#user}}
+          <input type="hidden" id="new-note-user-id" value="{{id}}">
+        {{/user}}
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+        <button type="button" class="btn btn-primary" id="note-create-btn">생성</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{>layouts/footer}}
+
+<!-- 모달 이벤트 처리 -->
+<script>
+{
+  // 모달 요소 선택
+  const noteEditModal = document.querySelector("#note-edit-modal");
+
+  // 모달 이벤트 감지
+  noteEditModal.addEventListener("show.bs.modal", function(event) {
+    // 트리거 버튼 선택
+    const triggerBtn = event.relatedTarget;
+  });
+}
+
+{
+  // 생성 완료 버튼
+  const noteCreateBtn = document.querySelector("#note-create-btn");
+
+  // 클릭 이벤트 감지 및 처리
+  noteCreateBtn.addEventListener("click", function() {
+    // 생성 객체 생성
+    const note = {
+      title: document.querySelector("#new-note-title").value,
+      explanation: document.querySelector("#new-note-explanation").value,
+      user_id: document.querySelector("#new-note-user-id").value
+    };
+
+
+    // 생성 REST API 호출 - fetch()
+    const url = "/api/quizlet/" + note.user_id + "/note";
+    fetch(url, {
+      method: "post",                  // PATCH 요청
+      body: JSON.stringify(note),    // 객체를 json으로 변경하여 전달
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(response => {
+      // http 응답 코드에 따른 메시지 출력
+      const msg = (response.ok) ? "단어장 생성 완료" : "단어장 생성 실패..!";
+      alert(msg);
+      // 현재 페이지를 새로고침
+      window.location.reload();
+    });
+  });
+}
+</script>
+
+<!-- 댓글 삭제 -->
+<script>
+{
+  // 삭제 버튼 선택
+  const noteDeleteBtns = document.querySelectorAll(".note-delete-btn");
+
+  // 삭제 버튼 이벤트를 처리
+  noteDeleteBtns.forEach(btn => {
+    // 각 버튼의 이벤트 처리를 등록
+    btn.addEventListener("click", (event) => {
+      // 이벤트 발생 요소를 선택
+      const noteDeleteBtn = event.srcElement;
+
+      // 삭제 단어장 id 가져오기
+      const noteId = noteDeleteBtn.getAttribute("data-note-id");
+      console.log(`삭제 버튼 클릭: ${noteId}번 단어장`); // "삭제 버튼 클릭: " + noteId + "번 단어장";
+
+      // 삭제 API 호출 및 처리
+      const url = `/api/quizlet/note/${noteId}`; // 백틱 숫자 1번 왼쪽키 사용하면 주석 코드 안에서 다른 값 사용가능
+      fetch(url, {
+        method: "DELETE"
+      }).then(response => {
+        // 단어장 삭제 실패 처리
+        if (!response.ok) {
+          alert("단어장 삭제 실패..!");
+          return;
+        }
+
+        // 삭제 성공 시, 단어장을 화면에서 지움!
+        const target = document.querySelector(`#note-${noteId}`);
+        target.remove();
+      });
+    });
+  });
+}
+</script>
+
