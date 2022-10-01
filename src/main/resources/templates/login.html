@@ -1,39 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>로그인 페이지</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quizlet에 로그인 | Quizlet</title>
+  <link rel="apple-touch-icon" sizes="57x57" href="/img/ico/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/img/ico/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/img/ico/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/ico/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/img/ico/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/img/ico/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/img/ico/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/img/ico/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/ico/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/img/ico/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/ico/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/img/ico/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/ico/favicon-16x16.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-straight/css/uicons-bold-straight.css'>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <link href="/css/join.css" rel="stylesheet">
 </head>
 <body>
-<h1>로그인 페이지</h1>
-<hr/>
-<!-- 시큐리티는 x-www-form-url-encoded 타입만 인식 -->
-<form action="/loginProc" method="post">
-  <input type="text" name="username" />
-  <input type="password" name="password" />
-  <button>로그인</button>
-</form>
+<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+  <div class="row align-items-center g-lg-5 py-5">
+    <div class="col-lg-7 text-center text-lg-start">
+      <img src="/img/q-note-remove-bg.png" width="200" height="200"
+             viewBox="0 0 118 94" >
+      <h1 class="display-4 fw-bold lh-1 mb-3 info-text">나의 단어장 Q-Note</h1>
+      <p class="col-lg-10 fs-4 info-text">나만의 커스텀 단어장을 등록하여 학습해보세요. 오답 횟수랑 맞춘 횟수를 비교하며 집중 학습이 가능합니다. 지금 바로 시작하세요!</p>
+    </div>
+    <div class="col-md-10 mx-auto col-lg-5">
+      <form class="p-4 p-md-5 border rounded-3 bg-light">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="floatingInput" name="username" placeholder="name@example.com">
+          <label for="floatingInput">아이디</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
+          <label for="floatingPassword">비밀번호</label>
+        </div>
+          <div class="jointag">
+            <a href="/Q-Note/join">회원 가입</a>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
+        <hr class="my-1">
+        <small class="text-muted">소셜 로그인</small>
 
-<br />
-
-<h1>Social Login</h1>
-<br />
-<!-- javascript:; 는 클릭해도 반응을 없게 하는 키워드 -->
-<a href="/oauth2/authorization/google" >
-  <img src="https://pngimage.net/wp-content/uploads/2018/06/google-login-button-png-1.png"
-       alt="google" width="357px" height="117px">
-</a>
-<br />
-<a href="/oauth2/authorization/facebook">
-  <img src="https://pngimage.net/wp-content/uploads/2018/06/login-with-facebook-button-png-transparent-1.png"
-       alt="facebook" width="357px" height="117px">
-</a>
-<br />
-
-<a href="/oauth2/authorization/naver">
-  <img src="https://blogfiles.pstatic.net/MjAyMDA4MDRfMzMg/MDAxNTk2NTEyOTY4MDMx.vhXHCulffijGUnvlaBR2jW4__Lkz8R3ZTaEDcTeNV2gg.Wt_HNl_zktUJUMrYGkVmqJ-PhxKv_s4A7gG1uPKMZaQg.PNG.getinthere/naver_button.png"
-       alt="facebook" width="357px" height="50px">
-</a>
-<br />
+      <div class="d-grid mb-2">
+        <button class="w-100 btn btn-lg btn-danger" type="button" onclick="location.href='/oauth2/authorization/google'">
+          <i class="bi bi-google me-2"></i> GOOGLE 로그인
+        </button>
+      </div>
+      <div class="d-grid mb-2">
+        <button class="w-100 btn btn-lg btn-primary" type="button" style="--bs-btn-bg: #3b5998; --bs-btn-border-color: #3b5998; --bs-btn-hover-bg: #2f477a; --bs-btn-hover-border-color: #2f477a;" onclick="location.href='/oauth2/authorization/facebook'">
+          <i class="bi bi-facebook me-2"></i> FACEBOOK 로그인
+        </button>
+      </div>
+      <div class="d-grid">
+        <button class="w-100 btn btn-lg btn-success" type="button" onclick="location.href='/oauth2/authorization/naver'">
+          <i class="fi fi-bs-n me-2"></i> NAVER 로그인
+        </button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
 </html>

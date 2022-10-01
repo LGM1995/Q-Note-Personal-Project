@@ -18,14 +18,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class NoteController {
 
-    @Autowired
-    private NoteService noteService;
+    private final NoteService noteService;
 
-    @Autowired
-    private WordService wordService;
+    private final WordService wordService;
 
-    @GetMapping("/quizlet/note/{id}")
-    public String details(@PathVariable Integer id, Model model) {
+    public NoteController(NoteService noteService, WordService wordService) {
+        this.noteService = noteService;
+        this.wordService = wordService;
+    }
+
+    @GetMapping("/Q-Note/note/{id}")
+    public String details(@PathVariable Long id, Model model) {
         // 노트 아이디의 단어장을 검색
         Note note = noteService.read(id);
         if (note != null) {
@@ -39,16 +42,13 @@ public class NoteController {
         return "note/details";
     }
 
-    @GetMapping("/quizlet/note/{id}/study")
-    public String study(@PathVariable Integer noteId, Model model) {
-        List<Word> wordList = wordService.shuffle(noteId);
-        Note note = noteService.read(noteId);
-        List<Word> words = null;
-        for (int i = 0; i < 10; i++) {
-            words.add(wordList.get(0));
-        }
-        model.addAttribute("words",words);
+    @GetMapping("/Q-Note/note/{id}/study")
+    public String study(@PathVariable Long id, Model model) {
+        Note note = noteService.read(id);
+        List<Word> wordList = wordService.words(note.getId());
+        Collections.shuffle(wordList);
         model.addAttribute("note", note);
+        model.addAttribute("wordList", wordList);
 
         return "note/study";
     }

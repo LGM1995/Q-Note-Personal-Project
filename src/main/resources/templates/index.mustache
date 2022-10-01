@@ -1,8 +1,8 @@
 {{>layouts/header}}
-<div class="p-5 mb-4 bg-light rounded-3">
+<div class="p-5 mb-4 bg-light rounded-3 create-card">
   <div class="container-fluid py-5">
     <h1 class="display-5 fw-bold">내가 만드는 단어 학습</h1>
-    <p class="col-md-8 fs-4">Quizlet 단어 학습은 내가 직접 등록한 문제를 풀어보며 학습할 수 있습니다. 한 라운드에 10문제씩 랜덤으로 출제되는 문제를 풀어보며 틀린 문제는 반복적으로 다시 풀면서 암기하세요.</p>
+    <p class="col-md-8 fs-4">Q-Note 단어 학습은 내가 직접 등록한 문제를 풀어보며 학습할 수 있습니다. 랜덤으로 출제되는 문제를 풀어보며 틀린 문제는 반복적으로 다시 풀면서 암기하세요.</p>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
       <button class="btn btn-primary btn-lg" type="button" data-bs-toggle="modal" data-bs-target="#note-edit-modal">단어장 만들기</button>
     </div>
@@ -12,13 +12,13 @@
 <div class="row align-items-md-stretch" style="--bs-gutter-y: 1rem;">
 {{#noteList}}
   <div class="col-md-6" id="note-{{id}}">
-    <div class="h-100 p-5 bg-light border rounded-3">
+    <div class="h-100 p-5 bg-light border rounded-3 note-card">
       <h2>{{title}}</h2>
-      <h6 class="card-subtitle mb-2 text-muted">학습횟수: {{view}}</h6>
+      <h6 class="card-subtitle mb-2 text-primary">학습횟수: {{view}}</h6>
       <p>{{explanation}}</p>
-      <button class="btn btn-outline-primary" onclick="location.href='/quizlet/note/{{id}}';"
+      <button class="btn btn-primary" onclick="location.href='/Q-Note/note/{{id}}';"
               type="button">학습하기</button>
-      <button class="btn btn-outline-danger note-delete-btn" type="button" data-note-id="{{id}}">삭제</button>
+      <button class="btn btn-danger note-delete-btn" type="button" data-note-id="{{id}}">삭제</button>
     </div>
   </div>
 {{/noteList}}
@@ -86,7 +86,7 @@
 
 
     // 생성 REST API 호출 - fetch()
-    const url = "/api/quizlet/" + note.user_id + "/note";
+    const url = "/api/Q-Note/" + note.user_id + "/note";
     fetch(url, {
       method: "post",                  // PATCH 요청
       body: JSON.stringify(note),    // 객체를 json으로 변경하여 전달
@@ -122,7 +122,7 @@
       console.log(`삭제 버튼 클릭: ${noteId}번 단어장`); // "삭제 버튼 클릭: " + noteId + "번 단어장";
 
       // 삭제 API 호출 및 처리
-      const url = `/api/quizlet/note/${noteId}`; // 백틱 숫자 1번 왼쪽키 사용하면 주석 코드 안에서 다른 값 사용가능
+      const url = `/api/Q-Note/note/${noteId}`; // 백틱 숫자 1번 왼쪽키 사용하면 주석 코드 안에서 다른 값 사용가능
       fetch(url, {
         method: "DELETE"
       }).then(response => {
@@ -131,7 +131,7 @@
           alert("단어장 삭제 실패..!");
           return;
         }
-
+        alert("단어장 삭제 성공!")
         // 삭제 성공 시, 단어장을 화면에서 지움!
         const target = document.querySelector(`#note-${noteId}`);
         target.remove();

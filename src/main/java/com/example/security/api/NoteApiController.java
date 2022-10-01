@@ -17,8 +17,8 @@ public class NoteApiController {
     private NoteService noteService;
 
     // 단어장 생성
-    @PostMapping("/api/quizlet/{userId}/note")
-    public ResponseEntity<Note> create(@PathVariable Integer userId,
+    @PostMapping("/api/Q-Note/{userId}/note")
+    public ResponseEntity<Note> create(@PathVariable Long userId,
         @RequestBody Note note) {
         // 서비스에게 위임
         Note cnote = noteService.create(userId, note);
@@ -27,8 +27,8 @@ public class NoteApiController {
     }
 
     // 단어장 삭제
-    @DeleteMapping("/api/quizlet/note/{id}")
-    public ResponseEntity<Note> delete(@PathVariable Integer id) {
+    @DeleteMapping("/api/Q-Note/note/{id}")
+    public ResponseEntity<Note> delete(@PathVariable Long id) {
         Note note = noteService.delete(id);
         return ResponseEntity.status(HttpStatus.OK).body(note);
     }

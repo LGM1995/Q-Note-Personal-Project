@@ -1,8 +1,14 @@
 body {
-  background: #007bff;
-  background: linear-gradient(to right, #0062E6, #33AEFF);
-  background-image: url("/img/야너두2.jpeg");
+  height: 100vh;
+  background-image: linear-gradient(
+          rgba(0, 0, 0, 0.08),
+          rgba(0, 0, 0, 0.08)
+  ), url("/img/login-bg.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
+
 
 .btn-login {
   font-size: 0.9rem;
@@ -15,7 +21,3 @@ body {
   text-align: center;
 }
 
-a {
-  text-decoration: none;
-  color: red !important
-}

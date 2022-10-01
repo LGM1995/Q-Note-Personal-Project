@@ -1,15 +1,15 @@
 {{>layouts/header}}
 {{#note}}
-<div class="p-5 mb-4 bg-light rounded-3">
+<div class="p-5 mb-4 bg-light rounded-3 study-note">
   <div class="container-fluid py-5">
     <h1 class="display-4 fw-bold">{{title}}</h1>
-    <h7 class="display-7 text-muted">학습횟수: {{view}}</h7>
+    <h7 class="display-7 text-primary">학습횟수: {{view}}</h7>
     <p class="col-md-8 fs-4">{{explanation}}</p>
-    <button class="btn btn-success btn-lg justify-content-md-end" type="button" onclick="location.href='/quizlet/note/{{id}}/study';">학습시작</button>
+    <button class="btn btn-success btn-lg justify-content-md-end" type="button" onclick="location.href='/Q-Note/note/{{id}}/study';">학습시작</button>
   </div>
 </div>
 
-<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#word-edit-modal">
+<button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#word-edit-modal">
   <i class="bi bi-plus-square"></i> 단어등록
 </button>
 {{/note}}
@@ -32,8 +32,8 @@
       <td>{{fail_count}}</td>
       <td>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-          <button type="button" class="btn btn-success btn-sm"><i class="bi bi-pencil-square"></i> 수정</button>
-          <button type="button" class="btn btn-danger btn-sm word-delete-btn" data-word-id="{{id}}"><i class="bi bi-trash"></i> 삭제</button>
+          <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i> 수정</button>
+          <button type="button" class="btn btn-outline-danger btn-sm word-delete-btn" data-word-id="{{id}}"><i class="bi bi-trash"></i> 삭제</button>
         </div>
       </td>
     </tr>
@@ -102,7 +102,7 @@
 
 
     // 생성 REST API 호출 - fetch()
-    const url = "/api/quizlet/" + word.note_id + "/word";
+    const url = "/api/Q-Note/" + word.note_id + "/word";
     fetch(url, {
       method: "post",                  // PATCH 요청
       body: JSON.stringify(word),    // 객체를 json으로 변경하여 전달
@@ -138,7 +138,7 @@
       console.log(`삭제 버튼 클릭: ${wordId}번 단어장`); // "삭제 버튼 클릭: " + noteId + "번 단어";
 
       // 삭제 API 호출 및 처리
-      const url = `/api/quizlet/word/${wordId}`; // 백틱 숫자 1번 왼쪽키 사용하면 주석 코드 안에서 다른 값 사용가능
+      const url = `/api/Q-Note/word/${wordId}`; // 백틱 숫자 1번 왼쪽키 사용하면 주석 코드 안에서 다른 값 사용가능
       fetch(url, {
         method: "DELETE"
       }).then(response => {
@@ -147,7 +147,7 @@
           alert("단어 삭제 실패..!");
           return;
         }
-
+          alert("단어 삭제 성공!")
         // 삭제 성공 시, 단어을 화면에서 지움!
         const target = document.querySelector(`#word-${wordId}`);
         target.remove();

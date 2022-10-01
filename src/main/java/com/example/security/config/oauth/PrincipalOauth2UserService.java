@@ -19,9 +19,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
+    private final UserRepository userRepository;
 
-    @Autowired
-    private UserRepository userRepository;
+    public PrincipalOauth2UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
     // userRequest 는 code를 받아서 accessToken을 응답 받은 객체
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {

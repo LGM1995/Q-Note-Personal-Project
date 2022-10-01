@@ -14,9 +14,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class PrincipalDetailsService implements UserDetailsService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
+    public PrincipalDetailsService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     // 시큐리티 session(Authentication(UserDetails))
     @Override

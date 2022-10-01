@@ -13,22 +13,25 @@ import org.springframework.stereotype.Service;
 @Service
 public class NoteService {
 
-    @Autowired
-    UserRepository userRepository;
-    @Autowired
-    NoteRepository noteRepository;
+    private final UserRepository userRepository;
+    private final NoteRepository noteRepository;
 
-    public List<Note> notes(Integer userId) {
+    public NoteService(UserRepository userRepository, NoteRepository noteRepository) {
+        this.userRepository = userRepository;
+        this.noteRepository = noteRepository;
+    }
+
+    public List<Note> notes(Long userId) {
         return noteRepository.findByUserId(userId);
     }
 
     @Transactional
-    public Note create(Integer userId, Note note) {
+    public Note create(Long userId, Note note) {
         User user = userRepository.findById(userId).orElse(null);
         if (user != null) {
             Note cnote = Note.builder()
                 .title(note.getTitle())
-                .view(0)
+                .view(0L)
                 .explanation(note.getExplanation())
                 .user(user)
                 .studyDate(null)
@@ -39,7 +42,7 @@ public class NoteService {
     }
 
     @Transactional
-    public Note update(Integer id, Note note) {
+    public Note update(Long id, Note note) {
         Note target = (noteRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("단어장 수정 실패!")));
 
         target.update(note);
@@ -48,14 +51,21 @@ public class NoteService {
     }
 
     @Transactional
-    public Note read(Integer id) {
+    public Note read(Long id) {
         return noteRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("단어장 로드 실패!"));
     }
 
     @Transactional
-    public Note delete(Integer id) {
+    public Note delete(Long id) {
         Note note = noteRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("단어장 삭제 실패!"));
         noteRepository.delete(note);
+        return note;
+    }
+
+    @Transactional
+    public Note viewCountUp(Long id) {
+        Note note = noteRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("단어장 로드 실패!"));
+        note.viewCount();
         return note;
     }
 }

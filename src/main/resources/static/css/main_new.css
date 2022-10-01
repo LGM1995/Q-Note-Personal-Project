@@ -1,0 +1,379 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+*{
+    padding: 0ox; margin: 0px; text-decoration: none; list-style: none; box-sizing: border-box;
+    -ms-user-select: none; -moz-user-select: -moz-none; -khtml-user-select: none; -webkit-user-select: none; user-select: none;
+}
+
+.con{
+    text-align: center; font-family: 'Noto Sans KR',sans-serif;
+}
+
+
+/* 占쎈뻻占쎌삂占쎌넅筌롳옙 */
+.con-title{
+    min-width: 100vw; min-height: 100vh; padding: 30px 0px; display: block;
+}
+
+.con-title h1{
+    font-size: 32px;
+    top: 10%; left: 0; right: 0; margin: 0 auto;
+}
+
+.con-title .title-main-img{
+    width: 75%;
+}
+
+.con-title h2{
+    font-weight: 500; line-height: 1.44; font-size: 16px; color: #000;
+    margin-top: 10px; margin-bottom: 4%;
+}
+
+.con-title .title-start-btn{
+    display: block;  width: 260px; height: 59px; margin: 0 auto; margin-bottom: 3%;
+    border-radius: 30px; border: solid 3px #2979ff; background-color: #2979ff;
+    font-size: 25px; font-weight: 500; color: #fff;
+}
+
+.con-title .other-test{
+    background-color: #fff;
+    color: #2979ff;
+    font-size: 20px;
+}
+
+.con-title .title-start-btn:hover{
+    background-color: #fff;
+    color: #2979ff;
+}
+
+.con-title .other-test:hover{
+    background-color: #2979ff;
+    color: #fff;
+}
+
+.con-title a .title-logo{
+    width: 90px; height: auto;
+    display: inline-block; vertical-align: bottom; 
+}
+
+.con-title a p{
+    font-size: 14px; color: #000;
+    display: inline-block;margin-bottom:5px;
+}
+
+/* 筌욌뜄揆占쎌넅筌롳옙 */
+.con-quest{
+    min-width: 100vw; min-height: 100vh; padding: 30px 0px; display: block;
+    text-align: left;
+}
+
+.con-quest .nav{
+    text-align: center;
+}
+
+.con-quest .quest-number{
+    font-size: 49px; font-weight: bold; display: inline-block; vertical-align: middle;
+    margin-left: 5px;
+}
+
+.con-quest .quest-process{
+    display: inline-block; margin-left: 50%; color: rgba(0,0,0,0.6);
+}
+
+.con-quest .quest-title{
+    font-size: 17px; font-weight: bold; line-height: 1.65; color: #000;
+    margin-top: 20px; margin-bottom: 20px; text-align: center; height: 60px;
+}
+
+.con-quest .option{
+    margin: 0 auto; width: 260px;
+}
+
+.con-quest .option .quest-option{
+	line-height: 1.4; 
+    height: 120px; margin: 10px 0px 10px; background-color: #2979ff; border-radius: 10px;
+    padding: 0px 16px; box-shadow: 0px 5px 10px 0 rgba(0,0,0,0.10);
+}
+
+.con-quest .option .quest-option p{
+    color: #fff; 
+    height: 120px; display: table-cell; vertical-align: middle; text-align: center;
+}
+
+.con-quest .quest-img{
+    display: block; width: 240px; height: 240px;
+    position: relative; z-index: -23; margin: 0 auto; margin-top: 15px;
+}
+
+.con-quest .option .quest-option:hover{
+    height: 120px; margin: 10px 0px 10px; background-color: #fff; border-radius: 10px;
+    padding: 0px 16px; box-shadow: 0px 5px 10px 0 rgba(0,0,0,0.10);
+}
+
+.con-quest .option .quest-option p:hover{
+    color: #2979ff; 
+    height: 120px; display: table-cell; vertical-align: middle;
+}
+
+
+
+@media screen and (min-width: 769px){
+    /* 占쎈뻻占쎌삂占쎌넅筌롳옙 占쎌럲 */
+    .con-title{
+        width: 300px; height: 100%; padding: 30px 0px; display: block;
+    }
+
+    .con-title h1{
+        font-size: 32px;
+        top: 10%; left: 0; right: 0; margin: 0 auto;
+    }
+
+    .con-title .title-main-img{
+        width: 340px; margin-top: 0px;
+    }
+
+    .con-title h2{
+        font-weight: 500; line-height: 1.44; font-size: 16px; color: #000;
+        margin-top: 20px; margin-bottom: 15px;
+    }
+
+
+
+    /* 筌욌뜄揆占쎌넅筌롳옙 占쎌럲 */
+    .con-quest{
+        min-width: 100vw; min-height: 100vh; padding: 30px 0px; display: block;
+        text-align: left;
+    }
+
+    .con-quest .nav{
+        text-align: center;
+    }
+
+    .con-quest .quest-number{
+        font-size: 49px; font-weight: bold; display: inline-block; vertical-align: middle;
+    }
+
+    .con-quest .quest-process{
+        display: inline-block; margin-left: 200px; color: rgba(0,0,0,0.6);
+    }
+
+    .con-quest .quest-title{
+        font-size: 17px; font-weight: bold; line-height: 1.65; color: #000;
+        margin-top: 20px; margin-bottom: 40px; text-align: center;
+    }
+
+    .con-quest .option{
+        margin: 0 auto; width: 260px;
+    }
+
+    .con-quest .option .quest-option{
+        height: 120px; margin: 10px 0px 10px; background-color: #2979ff; border-radius: 10px;
+        padding: 0px 16px; box-shadow: 0px 5px 10px 0 rgba(0,0,0,0.10);
+        line-height: 1.4; 
+    }
+
+    .con-quest .option .quest-option p{
+        color: #fff; 
+        height: 120px; display: table-cell; vertical-align: middle; text-align: center;
+    }
+
+    .con-quest .quest-img{
+        display: block; width: 240px; height: 240px;
+        position: relative; z-index: -23; margin: 0 auto;
+    }
+
+    .con-quest .option .quest-option:hover{
+        height: 120px; margin: 10px 0px 10px; background-color: #fff; border-radius: 10px;
+        padding: 0px 16px; box-shadow: 0px 5px 10px 0 rgba(0,0,0,0.10);
+    }
+
+    .con-quest .option .quest-option p:hover{
+        color: #2979ff; 
+        height: 120px; display: table-cell; vertical-align: middle;
+    }
+}
+
+/* 寃곌낵�붾㈃ */
+.fin{
+    background-color: #000; width: 100%; height: 100%; text-align: center; color: #fff;  min-height: 100vh;
+    font-family: 'Noto Sans KR',sans-serif;
+}
+
+.fin .con-my .title-logo{
+    width: 105px; background-color: #fff; border:solid 5px; border-radius: 40px;margin: 20px auto;
+}
+
+.fin .con-my h1{
+	font-size: 23px; line-height: 1.2; margin: 40px auto;
+}
+
+.fin .con-my .my-img-cover{
+    border-radius: 240px; border: #2979ff solid 4px; width: 240px; height: 240px; margin: 0 auto; overflow: hidden;
+}
+
+.fin .con-my .my-img-cover img{
+    width: 240px; height: 240px;
+}
+
+.fin .con-my h2{
+    font-size: 30px; font-weight: bold; border-bottom: solid 4px #2979ff; width: 220px;
+    margin: 0 auto; margin-top: 30px; 
+}
+
+.fin .con-my h3{
+    width: 220px; font-size: 16px; line-height: 1.56; margin: 5px auto;
+}
+
+.fin .con-my p{
+    width: 300px; margin: 30px auto;
+    font-size: 16px; font-weight: 300; line-height: 1.56; text-align: left;
+}
+/* 野껉퀗�듸옙�뺧쭖占�-占쎄돌占쎌벥 野껉퀗�� */
+
+.fin .other{
+    display: inline-block;
+}
+
+.fin .other .other-option{
+    background-color: #fff; color: #000; width: 150px; height: 100%; float: left; margin: 5px;
+    border-radius: 20px; padding: 20px 10px; font-size: 14px;
+}
+
+.fin .other .other-option img{
+    width: 108px; height: 108px; margin: 10px 0px 10px;
+}
+
+.fin .other .option1 img{
+    border: #2979ff solid 4px; border-radius: 108px;
+}
+
+.fin .other .option2 img{
+    border: #eb1414 solid 4px; border-radius: 108px;
+}
+
+.fin .other .other-option p{
+    font-size: 20px; font-weight: 500; line-height: 1.4;
+}
+
+.fin .other .option1 p{
+    border-bottom: #2979ff solid 4px;
+}
+
+.fin .other .option2 p{
+    border-bottom: #eb1414 solid 4px;
+}
+/* 野껉퀗�듸옙�뺧쭖占�-占쎄돌占쏙옙 筌띿쉶�뾬r占쎈툧筌띿쉶�� */
+
+.fin .sns-link{
+    clear: both; padding-bottom: 25px; 
+}
+
+.fin .sns-link p{
+    font-size: 14px; font-weight: 400; margin: 15px;
+}
+
+.fin .sns-link span{
+    margin: 0px 6px; width: 45px; height: 45px;
+}
+
+.fin .sns-link img{
+    margin: 0px 10px; width: 50px; height: 50px;
+}
+
+.fin .sns-link .link{
+    display: block; background-color: rgb(50, 50, 50); width: 290px;
+    margin: 20px auto; border-radius: 3px; padding: 10px;
+}
+
+.fin .sns-link .link input{
+    width: 180px; height: 30px; border: none; background: none; color: white;
+}
+
+.fin .sns-link .link button{
+    width: 80px; height: 30px; border: none; border-radius: 3px; background-color: white; margin-left: 10px;
+}
+/* 野껉퀗�듸옙�뺧쭖占�-筌띻낱寃뺞�⑤벊�� */
+
+.fin .app-comment{
+    width: 310px; margin: 20px auto; display: block;
+}
+
+.fin .app-link{
+    margin: 20px auto;
+}
+
+.fin .app-link .store-link{
+    width: 130px; height: 100%; margin: 5px; display: inline-block;
+}
+
+.fin .app-link p{
+    font-size: 23px; font-weight: medium; line-height: 1.65; margin: 20px 0px 10px;
+}
+.fin .app-link .desc{
+    font-size: 14px; margin: 0px 10px auto;
+}
+
+.fin .app-link .icbox-link-btn{
+    width: 307px; height: 54px; border-radius: 8px; background-color: #000000;
+    color: #ffffff; font-size: 17px; font-weight: 400; line-height: 1.09;
+    margin-bottom: 5px;
+}
+
+.fin .app-link .icbox-link-btn:hover{
+    background-color: #fff; color: #000;
+}
+
+.fin .con-share{
+    min-width: 100vw;min-height:45vh; padding: 30px 0px; display: block;
+}
+
+.fin .con-share .title-start-wide-btn{
+    display: block;  width: 300px; height: 59px; margin: 0 auto; margin-bottom: 3%;
+    border-radius: 30px; border: solid 3px #2979ff; background-color: #2979ff;
+    font-size: 20px; font-weight: medium; color: #fff;
+}
+
+.fin .con-share .title-start-wide-btn:hover{
+    background-color: #fff;
+    color: #2979ff;
+}
+
+.fin .con-share .share-result{
+    background-color: #fff;
+    color: #2979ff;
+    font-size: 18px;
+}
+
+.fin .con-share .share-result:hover{
+    background-color: #2979ff;
+    color: #fff;
+}
+
+.fin .con-share .title-share-img{
+	background-color: #fff; width: 75%;
+}
+
+/* swiper custom style */
+.swiper-container {
+	width: 100%;
+	height: 100%;
+}
+
+.swiper-slide {
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
+	/* Center slide text vertically */
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+}
