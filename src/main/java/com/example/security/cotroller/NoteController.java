@@ -27,7 +27,7 @@ public class NoteController {
         this.wordService = wordService;
     }
 
-    @GetMapping("/Q-Note/note/{id}")
+    @GetMapping("/note/{id}")
     public String details(@PathVariable Long id, Model model) {
         // 노트 아이디의 단어장을 검색
         Note note = noteService.read(id);
@@ -42,7 +42,7 @@ public class NoteController {
         return "note/details";
     }
 
-    @GetMapping("/Q-Note/note/{id}/study")
+    @GetMapping("/note/{id}/study")
     public String study(@PathVariable Long id, Model model) {
         Note note = noteService.read(id);
         List<Word> wordList = wordService.words(note.getId());

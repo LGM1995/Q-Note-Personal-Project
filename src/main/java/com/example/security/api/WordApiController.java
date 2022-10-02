@@ -28,7 +28,7 @@ public class WordApiController {
     private NoteService noteService;
 
     // 단어장 생성
-    @PostMapping("/api/Q-Note/{noteId}/word")
+    @PostMapping("/api/{noteId}/word")
     public ResponseEntity<Word> create(@PathVariable Long noteId,
         @RequestBody Word word) {
         // 서비스에게 위임
@@ -38,14 +38,14 @@ public class WordApiController {
     }
 
     // 단어장 삭제
-    @DeleteMapping("/api/Q-Note/word/{id}")
+    @DeleteMapping("/api/word/{id}")
     public ResponseEntity<Word> delete(@PathVariable Long id) {
         Word word = wordService.delete(id);
         return ResponseEntity.status(HttpStatus.OK).body(word);
     }
 
     // 단어 시험
-    @PostMapping("api/Q-Note/{noteId}/test")
+    @PostMapping("api/{noteId}/test")
     public ResponseEntity<List<Word>> test(@PathVariable Long noteId,
                                            @RequestBody List<Word> words) {
         System.out.println(words.stream().toArray().toString()

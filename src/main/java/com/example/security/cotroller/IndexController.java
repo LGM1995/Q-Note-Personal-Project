@@ -21,7 +21,7 @@ import com.example.security.config.auth.PrincipalDetails;
 import com.example.security.model.User;
 
 @Controller
-@RequestMapping("Q-Note")
+//@RequestMapping("Q-Note")
 public class IndexController {
 
     private final NoteService noteService;

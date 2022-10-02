@@ -16,7 +16,7 @@
       <h2>{{title}}</h2>
       <h6 class="card-subtitle mb-2 text-primary">학습횟수: {{view}}</h6>
       <p>{{explanation}}</p>
-      <button class="btn btn-primary" onclick="location.href='/Q-Note/note/{{id}}';"
+      <button class="btn btn-primary" onclick="location.href='/note/{{id}}';"
               type="button">학습하기</button>
       <button class="btn btn-danger note-delete-btn" type="button" data-note-id="{{id}}">삭제</button>
     </div>
@@ -86,7 +86,7 @@
 
 
     // 생성 REST API 호출 - fetch()
-    const url = "/api/Q-Note/" + note.user_id + "/note";
+    const url = "/api/" + note.user_id + "/note";
     fetch(url, {
       method: "post",                  // PATCH 요청
       body: JSON.stringify(note),    // 객체를 json으로 변경하여 전달
@@ -122,7 +122,7 @@
       console.log(`삭제 버튼 클릭: ${noteId}번 단어장`); // "삭제 버튼 클릭: " + noteId + "번 단어장";
 
       // 삭제 API 호출 및 처리
-      const url = `/api/Q-Note/note/${noteId}`; // 백틱 숫자 1번 왼쪽키 사용하면 주석 코드 안에서 다른 값 사용가능
+      const url = `/api/note/${noteId}`; // 백틱 숫자 1번 왼쪽키 사용하면 주석 코드 안에서 다른 값 사용가능
       fetch(url, {
         method: "DELETE"
       }).then(response => {

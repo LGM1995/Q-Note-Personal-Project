@@ -36,6 +36,7 @@ public class SecurityConfig {
     @Order(SecurityProperties.BASIC_AUTH_ORDER)
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable();
+        http.logout().logoutSuccessUrl("/login");
         http.authorizeRequests()
             .antMatchers("/user/**").authenticated()
 //            .antMatchers("/manager/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGER')")
@@ -45,11 +46,11 @@ public class SecurityConfig {
             .formLogin()
             .loginPage("/login")
             .loginProcessingUrl("/loginProc") // login 주소가 호출이 되면 시큐리티가 먼처 채가서 로그인 진행함.
-            .defaultSuccessUrl("/Q-Note") // 성공하면 해당 url로 이동 만약 특정 페이지 로드중 로그인을 만나서 진행한다면 바로 그페이지로 이동
+            .defaultSuccessUrl("/") // 성공하면 해당 url로 이동 만약 특정 페이지 로드중 로그인을 만나서 진행한다면 바로 그페이지로 이동
             .and()
             .oauth2Login()
             .loginPage("/login") // 구글 로그인의 후처리가 필요함 (엑세스토큰 + 사용자 프로필 정보를 바로받음)
-            .defaultSuccessUrl("/Q-Note")
+            .defaultSuccessUrl("/")
             .userInfoEndpoint()
             .userService(principalOauth2UserService);
         return http.build();
