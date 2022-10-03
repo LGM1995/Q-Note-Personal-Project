@@ -8,11 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -44,8 +40,15 @@ public class WordApiController {
         return ResponseEntity.status(HttpStatus.OK).body(word);
     }
 
+    // 단어 수정
+    @PatchMapping("/api/word/{id}")
+    public ResponseEntity<Word> update(@PathVariable Long id, @RequestBody Word word) {
+        Word target = wordService.update(id, word);
+        return ResponseEntity.status(HttpStatus.OK).body(target);
+    }
+
     // 단어 시험
-    @PostMapping("api/{noteId}/test")
+    @PostMapping("/api/{noteId}/test")
     public ResponseEntity<List<Word>> test(@PathVariable Long noteId,
                                            @RequestBody List<Word> words) {
         System.out.println(words.stream().toArray().toString()

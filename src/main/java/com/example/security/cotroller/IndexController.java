@@ -92,6 +92,6 @@ public class IndexController {
         user.setPassword(encPassword);
         user.setRole("ROLE_USER");
         userService.save(user);
-        return "redirect:/";
+        return "redirect:/login";
     }
 }

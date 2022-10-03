@@ -32,7 +32,9 @@
       <td>{{fail_count}}</td>
       <td>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-          <button type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i> 수정</button>
+          <button type="button" class="btn btn-outline-primary btn-sm word-update-btn" data-bs-toggle="modal"
+          data-bs-target="#word-update-modal" data-bs-id="{{id}}" data-bs-name="{{name}}"
+          data-bs-mean="{{mean}}"><i class="bi bi-pencil-square"></i> 수정</button>
           <button type="button" class="btn btn-outline-danger btn-sm word-delete-btn" data-word-id="{{id}}"><i class="bi bi-trash"></i> 삭제</button>
         </div>
       </td>
@@ -71,11 +73,39 @@
   </div>
 </div>
 
+<div class="modal fade" id="word-update-modal" tabindex="-1" aria-labelledby="word-update-modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">단어 수정</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" id="update-word-id">
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">이름</label>
+                        <input type="text" class="form-control" id="update-word-name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label">의미</label>
+                        <input type="text" class="form-control" id="update-word-mean">
+                    </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                <button type="button" class="btn btn-primary" id="word-update-btn">수정</button>
+            </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 {{>layouts/footer}}
 
-  <!-- 모달 이벤트 처리 -->
-  <script>
+<!-- 모달 이벤트 처리 -->
+<script>
 {
   // 모달 요소 선택
   const wordEditModal = document.querySelector("#word-edit-modal");
@@ -118,6 +148,58 @@
     });
   });
 }
+</script>
+
+<!-- 댓글 수정 -->
+<script>
+    {
+      // 수정 단어 요소 선택
+      const wordUpdateModal = document.querySelector("#word-update-modal");
+
+      // 모달 이벤트 감지
+      wordUpdateModal.addEventListener("show.bs.modal", function (event) {
+        // 트리거 버튼 선택
+        const wordUpdateTriggerBtn = event.relatedTarget;
+
+        // 데이터 가져오기
+        const id = wordUpdateTriggerBtn.getAttribute("data-bs-id");
+        const name = wordUpdateTriggerBtn.getAttribute("data-bs-name");
+        const mean = wordUpdateTriggerBtn.getAttribute("data-bs-mean");
+
+        // 데이터 반영
+        document.querySelector("#update-word-id").value = id;
+        document.querySelector("#update-word-name").value = name;
+        document.querySelector("#update-word-mean").value = mean;
+      });
+    }
+
+    {
+      // 수정 완료 버튼
+      const wordUpdateBtn = document.querySelector("#word-update-btn");
+      // 클릭 이벤트 감지 및 처리
+      wordUpdateBtn.addEventListener("click", function () {
+          // 수정 단어 객체 생성
+          const word = {
+              id: document.querySelector("#update-word-id").value,
+              name: document.querySelector("#update-word-name").value,
+              mean: document.querySelector("#update-word-mean").value
+          };
+
+          // 수정 API 호출
+          const url = "/api/word/" + word.id;
+          fetch(url, {
+              method: "PATCH",
+              body: JSON.stringify(word),
+              headers: {
+                  "Content-Type": "application/json"
+              }
+          }).then(response => {
+              const msg = (response.ok) ? "단어 수정 완료!" : "단어 수정 실패!";
+              alert(msg);
+              window.location.reload();
+          });
+      });
+    }
 </script>
 
   <!-- 댓글 삭제 -->

@@ -4,6 +4,15 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+### img css .... ###
+.jpg
+.jpeg
+.img
+.css
+.js
+.svg
+
+
 ### STS ###
 .apt_generated
 .classpath
