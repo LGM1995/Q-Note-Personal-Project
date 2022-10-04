@@ -10,12 +10,12 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://seya.synology.me:23306/q-note?serverTimezone=Asia/Seoul
-    url: jdbc:mysql://localhost:3306/security?serverTimezone=Asia/Seoul
-#    username: mariadb
-#    password: mariadb
-    username: lgm1995
-    password: 0528
+    url: jdbc:mysql://seya.synology.me:23306/q-note?serverTimezone=Asia/Seoul
+#    url: jdbc:mysql://localhost:3306/security?serverTimezone=Asia/Seoul
+    username: mariadb
+    password: mariadb
+#    username: lgm1995
+#    password: 0528
 
   mvc:
     view:
@@ -42,19 +42,19 @@ spring:
       client:
         registration:
           google:
-            client-id: 752014485622-eli6j1lu89g3p9r8nr595m9brpoq2dd7.apps.googleusercontent.com # test
-#            client-id: 342490384087-j5ljg26sknql2pv4bogvva77pckse113.apps.googleusercontent.com # main
-            client-secret: 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 # test
-#            client-secret: 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 # main
+#            client-id: 752014485622-eli6j1lu89g3p9r8nr595m9brpoq2dd7.apps.googleusercontent.com # test
+            client-id: 342490384087-j5ljg26sknql2pv4bogvva77pckse113.apps.googleusercontent.com # main
+#            client-secret: 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 # test
+            client-secret: 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 # main
             scope:
             - email
             - profile
 
           facebook:
-            client-id: 829322704892779 # test
-#            client-id: 1481848495622635 # main
-            client-secret: 23b84e9669d0b348f9f9aea361e92ea5 # test
-#            client-secret: b7acb7f988d86918043439e836cd0d67 # main
+#            client-id: 829322704892779 # test
+            client-id: 1481848495622635 # main
+#            client-secret: 23b84e9669d0b348f9f9aea361e92ea5 # test
+            client-secret: b7acb7f988d86918043439e836cd0d67 # main
             scope:
             - email
             - public_profile
@@ -63,18 +63,18 @@ spring:
           # ???? OAuth2.0 ?? ????? ???? provider ??? ????.
           # ????? ???, ?? ???? ??? ????.
           naver:
-            client-id: VgWbni1smPfys8_01zSL #test
-#            client-id: iqO6blfIgiluxMgA6uOr #orgin
-            client-secret: UrtKRI99MS # test
-#            client-secret: pCCJKL0Ldv # orgin
+#            client-id: VgWbni1smPfys8_01zSL #test
+            client-id: iqO6blfIgiluxMgA6uOr #orgin
+#            client-secret: UrtKRI99MS # test
+            client-secret: pCCJKL0Ldv # orgin
             scope:
               - name
               - email
               - profile_image
             client-name: Naver # ????? ??? ?? ????? ???? ?????.
             authorization-grant-type: authorization_code
-            redirect-uri: http://localhost:8000/login/oauth2/code/naver # test
-#            redirect-uri: http://seya.synology.me:28000/login/oauth2/code/naver # main
+#            redirect-uri: http://localhost:8000/login/oauth2/code/naver # test
+            redirect-uri: http://seya.synology.me:28000/login/oauth2/code/naver # main
 
         provider:
           naver:
