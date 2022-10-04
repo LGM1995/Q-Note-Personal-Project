@@ -5,7 +5,7 @@ target/
 !**/src/test/**/target/
 
 pom.xml
-.yml
+application.yml
 
 ### img css .... ###
 .jpg
