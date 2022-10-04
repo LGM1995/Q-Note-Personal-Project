@@ -4,6 +4,9 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+pom.xml
+.yml
+
 ### img css .... ###
 .jpg
 .jpeg
