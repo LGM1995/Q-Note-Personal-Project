@@ -125,7 +125,10 @@
 
 <details>
 <summary>패키지</summary>
-![패키지 구조](https://user-images.githubusercontent.com/110650972/193795547-23945220-51a7-4b93-a000-742b25a5101b.png)
+<img alt="패키지 구조" src="https://user-images.githubusercontent.com/110650972/193796428-abbe941e-e425-427f-9536-8487d94a5581.png">
+
+
+ 
 </details>
 <br>
 <details>
