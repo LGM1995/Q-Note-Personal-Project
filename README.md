@@ -1,7 +1,7 @@
 ## Q-Note (ToyProject)
 >단어 학습을 위한 토이 프로젝트 입니다.
 
-![Q-Note-main](readme_img/Q-Note 메인.png)
+<img width="1426" alt="Q-Note 메인" src="https://user-images.githubusercontent.com/110650972/193794517-41637423-b69c-44a4-ad39-0b589e58420f.png">
 ## 목차
 * [소개](#소개)
   *  개발 목적
@@ -78,49 +78,50 @@
 <summary>로그인 및 회원가입</summary>
 
 #### 1. 로그인 화면
-![](readme_img/Q-Note 로그인.png)
+<img width="1426" alt="Q-Note 로그인" src="https://user-images.githubusercontent.com/110650972/193794625-bddb2e30-89a4-4a46-8ac5-3fe65e63d0b7.png">
 
 
 #### 2. 회원가입
-![](readme_img/Q-Note 회원가입.png)
+<img width="1436" alt="Q-Note 회원가입" src="https://user-images.githubusercontent.com/110650972/193794674-5e931e88-43b6-4632-a54c-27c94ef41b39.png">
+
 </details>
 <br>
 <details>
 <summary>단어장 및 단어 CRUD</summary>
 
 #### 1. 메인 페이지
-![](readme_img/Q-Note 메인.png)
+<img width="1426" alt="Q-Note 메인" src="https://user-images.githubusercontent.com/110650972/193794758-f0c838d2-e0e2-465c-8bf2-115252ef0c9b.png">
 #### 2. 단어장 등록
-![](readme_img/단어장 생성 modal.png)
+<img width="1424" alt="단어장 생성 modal" src="https://user-images.githubusercontent.com/110650972/193794805-db6f053a-0ec3-44ec-8d18-02d553e1be1c.png">
 #### 3. 단어장 Details (학습하기)
-![](readme_img/학습횟수,틀린횟수,성공횟수 업데이트.png)
+<img width="1425" alt="학습횟수,틀린횟수,성공횟수 업데이트" src="https://user-images.githubusercontent.com/110650972/193794833-41006d0e-3f6d-4d39-ad4d-db7f6d177d39.png">
 #### 4. 단어 등록
-![](readme_img/단어 등록 modal.png)
+<img width="1426" alt="단어 등록 modal" src="https://user-images.githubusercontent.com/110650972/193795193-c7422327-0051-494d-8005-b41de7bd972e.png">
+#### 5. 단어 수정
+<img width="1427" alt="단어수정 modal" src="https://user-images.githubusercontent.com/110650972/193795230-cfd106b0-06ba-4dbf-8ee7-05d4fa8d54d7.png">
 </details>
 <br>
 <details>
 <summary>단어 테스트</summary>
 
 #### 1. 테스트 화면
-![](readme_img/단어 테스트 swiper.png)
-
+<img width="1426" alt="단어 테스트 swiper" src="https://user-images.githubusercontent.com/110650972/193795322-0d712fcf-da2a-40e1-af57-cff31e4475bb.png">
 #### 2. 테스트 완료 화면
-![](readme_img/단어 테스트 완료.png)
-
+<img width="1426" alt="단어 테스트 완료" src="https://user-images.githubusercontent.com/110650972/193795376-307d344f-ae97-460e-a30d-1d3d507078a0.png">
 #### 3. 틀린 문제 확인 (arlet)
-![](readme_img/틀린문제 arlet.png)
+<img width="450" alt="틀린문제 arlet" src="https://user-images.githubusercontent.com/110650972/193795420-c88a663d-edcf-4e80-a826-6f3f2a171be7.png">
 </details>
 
 ### 3. 구조
 
 <details>
 <summary>패키지</summary>
-![](readme_img/패키지 구조.png)
+![패키지 구조](https://user-images.githubusercontent.com/110650972/193795547-23945220-51a7-4b93-a000-742b25a5101b.png)
 </details>
 <br>
 <details>
 <summary>DB</summary>
-![](readme_img/DB스키마.png)
+<img width="649" alt="DB스키마" src="https://user-images.githubusercontent.com/110650972/193795618-e3644fd2-bd21-4a25-9f19-9856243b246d.png">
 </details>
 
 ## 결론
