@@ -11,8 +11,8 @@
 	<groupId>com.example</groupId>
 	<artifactId>security</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>security</name>
-	<description>security</description>
+	<name>qnote</name>
+	<description>qnote</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
