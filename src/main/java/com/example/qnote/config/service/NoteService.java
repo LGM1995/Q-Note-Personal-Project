@@ -1,10 +1,13 @@
 package com.example.qnote.config.service;
 
+import com.example.qnote.dto.NoteDto;
+import com.example.qnote.dto.WordDto;
 import com.example.qnote.model.Note;
 import com.example.qnote.model.User;
 import com.example.qnote.repository.NoteRepository;
 import com.example.qnote.repository.UserRepository;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
@@ -20,18 +23,18 @@ public class NoteService {
         this.noteRepository = noteRepository;
     }
 
-    public List<Note> notes(Long userId) {
-        return noteRepository.findByUserId(userId);
+    public List<NoteDto> notes(Long userId) {
+        return noteRepository.findByUserId(userId).stream().map(note -> NoteDto.fromEntity(note)).collect(Collectors.toList());
     }
 
     @Transactional
-    public Note create(Long userId, Note note) {
+    public NoteDto create(Long userId, NoteDto noteDto) {
         User user = userRepository.findById(userId).orElse(null);
         if (user != null) {
             Note cnote = Note.builder()
-                .title(note.getTitle())
+                .title(noteDto.getTitle())
                 .view(0L)
-                .explanation(note.getExplanation())
+                .explanation(noteDto.getExplanation())
                 .user(user)
                 .studyDate(null)
                 .build();
@@ -41,31 +44,31 @@ public class NoteService {
     }
 
     @Transactional
-    public Note update(Long id, Note note) {
+    public NoteDto update(Long id, Note note) {
         Note target = (noteRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("단어장 수정 실패!")));
 
         target.update(note);
 
-        return noteRepository.save(target);
+        return NoteDto.fromEntity(noteRepository.save(target));
     }
 
     @Transactional
-    public Note read(Long id) {
-        return noteRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("단어장 로드 실패!"));
+    public NoteDto read(Long id) {
+        return NoteDto.fromEntity(noteRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("단어장 로드 실패!")));
     }
 
     @Transactional
-    public Note delete(Long id) {
+    public NoteDto delete(Long id) {
         Note note = noteRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("단어장 삭제 실패!"));
         noteRepository.delete(note);
-        return note;
+        return NoteDto.fromEntity(note);
     }
 
     @Transactional
-    public Note viewCountUp(Long id) {
+    public NoteDto viewCountUp(Long id) {
         Note note = noteRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("단어장 로드 실패!"));
         note.viewCount();
-        return note;
+        return NoteDto.fromEntity(note);
     }
 }
 

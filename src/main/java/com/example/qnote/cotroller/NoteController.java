@@ -2,6 +2,8 @@ package com.example.qnote.cotroller;
 
 import com.example.qnote.config.service.NoteService;
 import com.example.qnote.config.service.WordService;
+import com.example.qnote.dto.NoteDto;
+import com.example.qnote.dto.WordDto;
 import com.example.qnote.model.Note;
 import com.example.qnote.model.Word;
 
@@ -28,13 +30,13 @@ public class NoteController {
     @GetMapping("/note/{id}")
     public String details(@PathVariable Long id, Model model) {
         // 노트 아이디의 단어장을 검색
-        Note note = noteService.read(id);
-        if (note != null) {
+        NoteDto noteDto = noteService.read(id);
+        if (noteDto != null) {
             // 노트 아이디의 단어 리스트를 검색
-            List<Word> wordList = wordService.words(note.getId());
+            List<WordDto> wordDtos = wordService.words(noteDto.getId());
             // 모델에 단어장과 단어 리스트를 반환
-            model.addAttribute("note",note);
-            model.addAttribute("wordList",wordList);
+            model.addAttribute("note",noteDto);
+            model.addAttribute("wordList",wordDtos);
         }
         // 뷰 페이지에 전달
         return "note/details";
@@ -42,11 +44,11 @@ public class NoteController {
 
     @GetMapping("/note/{id}/study")
     public String study(@PathVariable Long id, Model model) {
-        Note note = noteService.read(id);
-        List<Word> wordList = wordService.words(note.getId());
-        Collections.shuffle(wordList);
-        model.addAttribute("note", note);
-        model.addAttribute("wordList", wordList);
+        NoteDto noteDto = noteService.read(id);
+        List<WordDto> wordDtos = wordService.words(noteDto.getId());
+        Collections.shuffle(wordDtos);
+        model.addAttribute("note", noteDto);
+        model.addAttribute("wordList", wordDtos);
 
         return "note/study";
     }

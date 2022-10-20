@@ -1,5 +1,6 @@
 package com.example.qnote.config.service;
 
+import com.example.qnote.dto.WordDto;
 import com.example.qnote.model.Note;
 import com.example.qnote.model.Word;
 import com.example.qnote.repository.NoteRepository;
@@ -8,6 +9,7 @@ import com.example.qnote.repository.WordRepository;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,23 +21,23 @@ public class WordService {
     @Autowired
     WordRepository wordRepository;
 
-    public List<Word> words(Long noteId) {
-        return wordRepository.findByNoteId(noteId);
+    public List<WordDto> words(Long noteId) {
+        return wordRepository.findByNoteId(noteId).stream().map(word -> WordDto.fromEntity(word)).collect(Collectors.toList());
     }
 
-    public List<Word> shuffle(Long noteId) {
-        List<Word> wordlist = wordRepository.findByNoteId(noteId);
+    public List<WordDto> shuffle(Long noteId) {
+        List<WordDto> wordlist = wordRepository.findByNoteId(noteId).stream().map(word -> WordDto.fromEntity(word)).collect(Collectors.toList());
         Collections.shuffle(wordlist);
         return wordlist;
     }
 
     @Transactional
-    public Word create(Long noteId, Word word) {
+    public WordDto create(Long noteId, WordDto wordDto) {
         Note note = noteRepository.findById(noteId).orElse(null);
         if (note != null) {
             Word cword = Word.builder()
-                .name(word.getName())
-                .mean(word.getMean())
+                .name(wordDto.getName())
+                .mean(wordDto.getMean())
                 .fail_count(0L)
                 .success_count(0L)
                 .studyDate(null)
@@ -47,16 +49,16 @@ public class WordService {
     }
 
     @Transactional
-    public List<Word> CountUp(List<Word> words) {
-        List<Word> failList = new ArrayList<>();
-        for (int i = 0; i < words.size(); i++) {
-            Word word = words.get(i);
-            Word target = (wordRepository.findById(word.getId()).orElseThrow(() -> new IllegalArgumentException("단어 찾기 실패!")));
-            if (target.getMean().equals(word.getMean())) {
+    public List<WordDto> CountUp(List<WordDto> wordDtos) {
+        List<WordDto> failList = new ArrayList<>();
+        for (int i = 0; i < wordDtos.size(); i++) {
+            WordDto wordDto = wordDtos.get(i);
+            Word target = (wordRepository.findById(wordDto.getId()).orElseThrow(() -> new IllegalArgumentException("단어 찾기 실패!")));
+            if (target.getMean().equals(wordDto.getMean())) {
                 target.success();
             } else {
                 // 오답 체크를 위해 틀린 문제를 리턴할 것
-                failList.add(target);
+                failList.add(WordDto.fromEntity(target));
                 target.fail();
             }
             wordRepository.save(target);
@@ -65,23 +67,26 @@ public class WordService {
     }
 
     @Transactional
-    public Word update(Long id, Word word) {
+    public WordDto update(Long id, WordDto wordDto) {
         Word target = (wordRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("단어 수정 실패!")));
 
-        target.update(word);
+        target.update(wordDto);
 
-        return wordRepository.save(target);
+        Word created = wordRepository.save(target);
+
+        return WordDto.fromEntity(created);
     }
 
     @Transactional
-    public Word read(Long id) {
-        return wordRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("단어 로드 실패!"));
+    public WordDto read(Long id) {
+        Word target = wordRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("단어 로드 실패!"));
+        return WordDto.fromEntity(target);
     }
 
     @Transactional
-    public Word delete(Long id) {
-        Word word = wordRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("단어 삭제 실패!"));
-        wordRepository.delete(word);
-        return word;
+    public WordDto delete(Long id) {
+        Word target = wordRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("단어 삭제 실패!"));
+        wordRepository.delete(target);
+        return WordDto.fromEntity(target);
     }
 }

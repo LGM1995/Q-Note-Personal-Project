@@ -3,6 +3,7 @@ package com.example.qnote.model;
 import java.sql.Timestamp;
 import javax.persistence.*;
 
+import com.example.qnote.dto.WordDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -33,9 +34,9 @@ public class Word {
     private Timestamp createDate;
     private Timestamp studyDate;
 
-    public void update(Word word) {
-        this.name = word.getName();
-        this.mean = word.getMean();
+    public void update(WordDto wordDto) {
+        this.name = wordDto.getName();
+        this.mean = wordDto.getMean();
     }
     public void success() { this.success_count += 1;}
 

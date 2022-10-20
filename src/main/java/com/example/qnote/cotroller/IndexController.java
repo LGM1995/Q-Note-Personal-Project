@@ -2,6 +2,7 @@ package com.example.qnote.cotroller;
 
 import com.example.qnote.config.service.NoteService;
 import com.example.qnote.config.service.UserService;
+import com.example.qnote.dto.NoteDto;
 import com.example.qnote.model.Note;
 import java.util.Iterator;
 
@@ -40,8 +41,8 @@ public class IndexController {
         User user = principal.getUser();
         if (user != null) {
             model.addAttribute("user", user);
-            List<Note> noteList = noteService.notes(user.getId());
-            model.addAttribute("noteList", noteList);
+            List<NoteDto> noteDtos = noteService.notes(user.getId());
+            model.addAttribute("noteList", noteDtos);
         }
         return "index";
     }

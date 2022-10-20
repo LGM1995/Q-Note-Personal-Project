@@ -1,6 +1,7 @@
 package com.example.qnote.api;
 
 import com.example.qnote.config.service.NoteService;
+import com.example.qnote.dto.NoteDto;
 import com.example.qnote.model.Note;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,18 +19,18 @@ public class NoteApiController {
 
     // 단어장 생성
     @PostMapping("/api/{userId}/note")
-    public ResponseEntity<Note> create(@PathVariable Long userId,
-        @RequestBody Note note) {
+    public ResponseEntity<NoteDto> create(@PathVariable Long userId,
+        @RequestBody NoteDto noteDto) {
         // 서비스에게 위임
-        Note cnote = noteService.create(userId, note);
+        NoteDto cnote = noteService.create(userId, noteDto);
         // 결과 응답
         return ResponseEntity.status(HttpStatus.OK).body(cnote);
     }
 
     // 단어장 삭제
     @DeleteMapping("/api/note/{id}")
-    public ResponseEntity<Note> delete(@PathVariable Long id) {
-        Note note = noteService.delete(id);
-        return ResponseEntity.status(HttpStatus.OK).body(note);
+    public ResponseEntity<NoteDto> delete(@PathVariable Long id) {
+        NoteDto noteDto = noteService.delete(id);
+        return ResponseEntity.status(HttpStatus.OK).body(noteDto);
     }
 }
