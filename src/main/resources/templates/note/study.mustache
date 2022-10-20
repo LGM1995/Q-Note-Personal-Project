@@ -16,7 +16,7 @@
                     <input type="text" class="form-control data-word-mean" placeholder="정답을 입력하세요." aria-label="mean" id="mean" aria-describedby="basic-addon1">
                 </div>
                 <button class="btn btn-primary next-swiper" value="{{name}}">다음</button>
-                <button class="btn btn-outline-danger" onclick="location.href='/note/{{id}}';">나가기</button>
+                <button class="btn btn-outline-danger" onclick="location.href='/note/{{note.id}}';">나가기</button>
             </div>
         </div>
       </div>
@@ -70,7 +70,6 @@
     $('.final-btn').on('click', function () {
         const fwords = [];
         const url = "/api/" + {{note.id}} + "/test";
-        let msg = null;
         fetch(url, {
             method: "post",
             body: JSON.stringify(words),
@@ -79,15 +78,28 @@
             }
         }).then(response =>  response.json())
               .then(data => data.forEach((value) => {
-                fwords.push("[틀린 문제]: " + value.name + ", [의미]: " + value.mean + "\n");
+                fwords.push("[틀린 문제]: " + value.name + ", [의미]: " + value.mean + "<br/>");
                   })).then(data => {(console.log(data))
             if (fwords.length == 0) {
-
-                alert("축하합니다! 백점입니다.");
-                window.location.href = "/note/{{note.id}}"
+              Swal.fire({
+                title: "와우~!",
+                text: "축하합니다! 백점입니다.",
+                icon:  "success",
+              }).then(result => {
+                if (result.isConfirmed) {
+                  window.location.href = "/note/{{note.id}}"
+                }
+              });
             } else {
-                alert(fwords);
-                window.location.href = "/note/{{note.id}}"
+              Swal.fire({
+                title: "아쉬워요~",
+                html: fwords,
+                icon:  "warning",
+              }).then(result => {
+                if (result.isConfirmed) {
+                  window.location.href = "/note/{{note.id}}"
+                }
+              });
             }}
         );
 

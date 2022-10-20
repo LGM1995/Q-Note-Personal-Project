@@ -3,6 +3,7 @@ package com.example.qnote.cotroller;
 import com.example.qnote.config.service.NoteService;
 import com.example.qnote.config.service.UserService;
 import com.example.qnote.dto.NoteDto;
+import com.example.qnote.dto.UserDto;
 import com.example.qnote.model.Note;
 import java.util.Iterator;
 
@@ -39,9 +40,10 @@ public class IndexController {
     @GetMapping({ "", "/" })
     public String index(@AuthenticationPrincipal PrincipalDetails principal, Model model) {
         User user = principal.getUser();
-        if (user != null) {
-            model.addAttribute("user", user);
-            List<NoteDto> noteDtos = noteService.notes(user.getId());
+        UserDto userDto = UserDto.fromEntity(user);
+        if (userDto != null) {
+            model.addAttribute("user", userDto);
+            List<NoteDto> noteDtos = noteService.notes(userDto.getId());
             model.addAttribute("noteList", noteDtos);
         }
         return "index";

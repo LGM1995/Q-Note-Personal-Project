@@ -141,10 +141,19 @@
       }
     }).then(response => {
       // http 응답 코드에 따른 메시지 출력
-      const msg = (response.ok) ? "단어 생성 완료" : "단어 생성 실패..!";
-      alert(msg);
-      // 현재 페이지를 새로고침
-      window.location.reload();
+      const state = (response.ok) ? "성공" : "실패";
+      const msg = (state==="성공") ? "단어 생성 성공..!" : "단어 생성 실패..!";
+      const i = (state==="성공") ? 'success' : 'error';
+      Swal.fire({
+        title: state,
+        text: msg,
+        icon:  i,
+      }).then(result => {
+        if (result.isConfirmed) {
+          // 현재 페이지를 새로고침
+          window.location.reload();
+        }
+      });
     });
   });
 }
@@ -194,9 +203,18 @@
                   "Content-Type": "application/json"
               }
           }).then(response => {
-              const msg = (response.ok) ? "단어 수정 완료!" : "단어 수정 실패!";
-              alert(msg);
-              window.location.reload();
+              const state = (response.ok) ? "성공" : "실패";
+              const msg = (state==="성공") ? "단어 수정 성공..!" : "단어 수정 실패..!";
+              const i = (state==="성공") ? 'success' : 'error';
+              Swal.fire({
+                title: state,
+                text: msg,
+                icon:  i,
+              }).then(result => {
+                  if (result.isConfirmed) {
+                    window.location.reload();
+                  }
+              });
           });
       });
     }
@@ -226,13 +244,27 @@
       }).then(response => {
         // 단어 삭제 실패 처리
         if (!response.ok) {
-          alert("단어 삭제 실패..!");
-          return;
+          Swal.fire({
+            title: "실패",
+            text: "단어 삭제 실패..!",
+            icon:  "error",
+          }).then(result => {
+            if (result.isConfirmed) {
+              return;
+            }
+          });
         }
-          alert("단어 삭제 성공!")
-        // 삭제 성공 시, 단어을 화면에서 지움!
-        const target = document.querySelector(`#word-${wordId}`);
-        target.remove();
+        Swal.fire({
+          title: "성공",
+          text: "단어 삭제 성공..!",
+          icon:  "success",
+        }).then(result => {
+          if (result.isConfirmed) {
+            // 삭제 성공 시, 단어을 화면에서 지움!
+            const target = document.querySelector(`#word-${wordId}`);
+            target.remove();
+          }
+        });
       });
     });
   });
