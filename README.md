@@ -1,5 +1,6 @@
 ## Q-Note (ToyProject)
->단어 학습을 위한 토이 프로젝트 입니다.
+>##### * Synology NAS 서버와 Docker를 사용하여 외부 접속이 가능합니다.
+[Q-Note 바로가기](http://seya.synology.me:28000/login)
 
 <img width="1426" alt="Q-Note 메인" src="https://user-images.githubusercontent.com/110650972/193794517-41637423-b69c-44a4-ad39-0b589e58420f.png">
 
@@ -58,6 +59,8 @@
 * Spring Security
 * OAuth 2.0
 * Lombok
+* Synology NAS
+* Docker
 #### Build Tool
 * maven 4.0.0
 #### DataBase
@@ -69,9 +72,7 @@
 * swiper8
 * jquery3.6.1
 * bootstrap 5.2.1
-
-##### * 현재 나스 서버와 도커를 활용하여 외부 접근이 가능합니다. 
-[Q-Note 바로가기](http://seya.synology.me:28000/login)
+* SweetAlert2
 
 
 ### 2. UI (사용자 화면)
@@ -155,7 +156,7 @@ Spring Boot의 기본 강의를 학습하며 CRUD 기능이 있으며 실제로 
 비교적 문법이 쉬운 Mustache를 활용하여 feach API를 통한 REST API의 호출로 HTTP 요청 메소드를 통해 JSON을 넘기는 통신 규칙을 실습할 수 있었습니다.
 또한 Spring Security와 OAth2을 활용한 로그인 기능을 통해 Session 안에서 Spring Security Session 영역과 그 안에 Authentication을 어떻게 활용하는지 알게 되었습니다. 
 다만 기초부터 학습해서 활용하느라 여러 강의를 정주행하였습니다. 비록 시간은 오래 걸렸지만 뜻깊은 학습 시간이 되었습니다. 
-번외로 지인의 NAS에 배포할 기회가 생겨 도커에 대해서도 추가로 알게 되었던 의미있는 프로젝트였습니다.
+추가적으로 Synology NAS에 Docker를 활용하여 배포하여 Docker에 대한 이해와 전반적인 서비스 배포 방법에 대하여 공부할 수 있었습니다.
 
 이상으로 저의 Git에 방문해 주셔서 감사합니다.
 
