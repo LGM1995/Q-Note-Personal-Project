@@ -71,7 +71,7 @@
 * bootstrap 5.2.1
 
 ##### * 현재 나스 서버와 도커를 활용하여 외부 접근이 가능합니다. 
-[Q-Note 바로가기](http://seya.synology.me:28000/login)
+[Q-Note 바로가기](http://gunmok.i234.me:28000/login)
 
 
 ### 2. UI (사용자 화면)
@@ -139,7 +139,8 @@
 
 ## 결론
 
-### 1. 보완점
+### 1. 보완점 
+* facebook http 로그인 불가능
 * ~~모든 알림 (alert) 커스터마이징~~ => 해결 22.10.21(금)
   * ~~sweetalert2 사용 예정~~
 * user 프로필 수정 기능
