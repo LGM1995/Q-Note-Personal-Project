@@ -77,7 +77,7 @@
 
 ### 2. UI (사용자 화면)
 <details>
-<summary>로그인 및 회원가입 (클릭시 이미지가 나옵니다)</summary>
+<summary>로그인 및 회원가입 <span style="color: #0000ff">(클릭시 이미지가 나옵니다)</span></summary>
 
 #### 1. 로그인 화면
 <img width="1426" alt="Q-Note 로그인" src="https://user-images.githubusercontent.com/110650972/193794625-bddb2e30-89a4-4a46-8ac5-3fe65e63d0b7.png">
@@ -89,7 +89,7 @@
 </details>
 <br>
 <details>
-<summary>단어장 및 단어 CRUD (클릭시 이미지가 나옵니다)</summary>
+<summary>단어장 및 단어 CRUD <span style="color: #0000ff">(클릭시 이미지가 나옵니다)</span></summary>
 
 #### 1. 메인 페이지
 <img width="1426" alt="Q-Note 메인" src="https://user-images.githubusercontent.com/110650972/193794758-f0c838d2-e0e2-465c-8bf2-115252ef0c9b.png">
@@ -109,7 +109,7 @@
 </details>
 <br>
 <details>
-<summary><span style="background-color: #0000ff">단어 테스트 (클릭시 이미지가 나옵니다)</span></summary>
+<summary>단어 테스트 <span style="color: #0000ff">(클릭시 이미지가 나옵니다)</span></summary>
 
 #### 1. 테스트 화면
 <img width="1426" alt="단어 테스트 swiper" src="https://user-images.githubusercontent.com/110650972/193795322-0d712fcf-da2a-40e1-af57-cff31e4475bb.png">
@@ -125,7 +125,7 @@
 ### 3. 구조
 
 <details>
-<summary>패키지</summary>
+<summary>패키지 <span style="color: #0000ff">(클릭시 이미지가 나옵니다)</span></summary>
 <img alt="패키지 구조" src="https://user-images.githubusercontent.com/110650972/193796428-abbe941e-e425-427f-9536-8487d94a5581.png">
 
 
@@ -133,7 +133,7 @@
 </details>
 <br>
 <details>
-<summary>DB</summary>
+<summary>DB <span style="color: #0000ff">(클릭시 이미지가 나옵니다)</span></summary>
 <img width="649" alt="DB스키마" src="https://user-images.githubusercontent.com/110650972/193795618-e3644fd2-bd21-4a25-9f19-9856243b246d.png">
  
 </details>
