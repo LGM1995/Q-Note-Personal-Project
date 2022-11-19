@@ -109,7 +109,7 @@
 </details>
 <br>
 <details>
-<summary>단어 테스트 (클릭시 이미지가 나옵니다)</summary>
+<summary><span style="background-color: #0000ff">단어 테스트 (클릭시 이미지가 나옵니다)</span></summary>
 
 #### 1. 테스트 화면
 <img width="1426" alt="단어 테스트 swiper" src="https://user-images.githubusercontent.com/110650972/193795322-0d712fcf-da2a-40e1-af57-cff31e4475bb.png">
